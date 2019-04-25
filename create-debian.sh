@@ -10,6 +10,7 @@ NAME=$1
 RAM=$2
 VCPU=$3
 SIZE=$4
+DOMAIN="kvm-image-prepare.devopsdex.com"
 
 sudo virt-install \
 --name $NAME \
@@ -23,5 +24,5 @@ sudo virt-install \
 --graphics none \
 --console pty,target_type=serial \
 --location 'http://cdn-fastly.deb.debian.org/debian/dists/testing/main/installer-amd64/' \
---initrd-inject=buster_preseed.cfg \
---extra-args='console=tty0 console=ttyS0,115200n8 auto=true hostname="${1}" domain="kvm-image-prepare.devopsdex.com"'
+--initrd-inject=preseed.cfg \
+--extra-args='auto=true hostname="${1}" domain="${DOMAIN}" console=tty0 console=ttyS0,115200n8 serial'
